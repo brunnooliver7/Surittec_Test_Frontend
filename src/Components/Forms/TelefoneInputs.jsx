@@ -11,7 +11,7 @@ const TelefoneInputs = (props) => {
                     type="text"
                     data-id={idx}
                     value={props.telefonesArray[idx].numero} 
-                    className="numero_telefone"
+                    className="numero"
                 />
             </div>
             )

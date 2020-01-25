@@ -23,7 +23,7 @@ class Create extends Component {
                 uf: '',
                 complemento: ''
             }],
-            cliente_telefone: [{numero_telefone: ''}],
+            cliente_telefone: [{numero: ''}],
             cliente_email: [{email: ''}]
         }
 
@@ -42,6 +42,7 @@ class Create extends Component {
         this.addEndereco = this.addEndereco.bind(this)
         // Submit
         this.handleSubmit = this.handleSubmit.bind(this)
+        this.onSubmitCliente = this.onSubmitCliente.bind(this)
 
     }
 
@@ -74,12 +75,12 @@ class Create extends Component {
     // FUNÇÕES TELEFONE
     addTelefone = (e) => {
         this.setState((prevState) => ({
-            cliente_telefone: [...prevState.cliente_telefone, {numero_telefone:""}],
+            cliente_telefone: [...prevState.cliente_telefone, {numero:""}],
         }));
         console.log(this.state)
     }
     handleChangeTelefone = (e) => {
-        if ( ["numero_telefone"].includes(e.target.className) ) {
+        if ( ["numero"].includes(e.target.className) ) {
           let telefonesChange = [...this.state.cliente_telefone]
           telefonesChange[e.target.dataset.id][e.target.className] = e.target.value
           this.setState({ telefonesChange }, () => console.log(this.state.cliente_telefone))
@@ -101,11 +102,46 @@ class Create extends Component {
     }
     // SUBMIT
     handleSubmit = (e) => {e.preventDefault()}
+    onSubmitCliente = (e) => {
+
+        e.preventDefault()
+
+        console.log(this.state)
+
+        console.log(`Form submited`)
+        console.log(`Nome: ${this.state.cliente_nome}`)
+        console.log(`CPF: ${this.state.cliente_cpf}`)
+        console.log(`Endereco: ${this.state.cliente_endereco}`)
+        console.log(`Telefone: ${this.state.cliente_telefone}`)
+        console.log(`Email: ${this.state.cliente_email}`)
+
+        const newClient = {
+            nome: this.state.cliente_nome,
+            cpf: this.state.cliente_cpf,
+            endereco: this.state.cliente_endereco,
+            telefone: this.state.cliente_telefone,
+            email: this.state.cliente_email
+        }
+        
+        console.log(newClient)
+
+        axios.post('http://localhost:8080/clientes',newClient) 
+        .then(res => console.log(res.data))
+        .catch(err => console.log(err));
+
+        this.setState({
+            client_nome: '',
+            client_cpf: '',
+            client_telefone: '',
+            client_endereco: '',
+            client_email: ''
+        })
+
+    }
     
     render() {
         let {cliente_nome, cliente_cpf, cliente_endereco, cliente_telefone, cliente_email} = this.state
         return (
-
             <React.Fragment>
                 <form 
                     className="nome-cpf-form"
@@ -116,7 +152,7 @@ class Create extends Component {
                         value={cliente_nome} 
                         className="nome"
                         onChange={this.handleChangeNome}
-                    />
+                        />
                     <label>CPF</label>
                     <input
                         type="text"
@@ -130,8 +166,11 @@ class Create extends Component {
                     onSubmit={this.handleSubmit} 
                     onChange={this.handleChangeEndereco}
                 >
+                    <div className="form-group">
                     <button onClick={this.addEndereco}>Adicionar outro endereco</button>
                     <EnderecoInputs enderecosArray={cliente_endereco} />                
+
+                    </div>
                 </form>
                 <form 
                     className="telefone-form" 
@@ -148,6 +187,15 @@ class Create extends Component {
                 >
                     <button onClick={this.addEmail}>Adicionar outro email</button>
                     <EmailInputs emailsArray={cliente_email} />
+                </form>
+                <form
+                    onSubmit={this.onSubmitCliente}
+                >
+                    <input 
+                        type="submit" 
+                        value="Create Todo" 
+                        className="btn btn-primary" 
+                    />
                 </form>
             </React.Fragment>
         )

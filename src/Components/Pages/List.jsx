@@ -58,7 +58,6 @@ class List extends Component {
         })
     }
 
-
     render() {
         return (
             <div style={{marginTop: 20}}>
@@ -67,7 +66,7 @@ class List extends Component {
                     placeholder='Procure por um cliente'
                 />
                 <h3 style={{marginTop:20}}>Lista</h3>
-                <table className="table table-striped" style={{ marginTop: 20 }}>
+                {/* <table className="table table-striped" style={{ marginTop: 20 }}>
                     <thead>
                         <tr>
                             <th>Nome</th>
@@ -81,7 +80,7 @@ class List extends Component {
                     <tbody>
                         { this.clientListMap() }
                     </tbody>
-                </table>
+                </table> */}
                 <Card list={this.state.clientesList}/>
             </div>
         )

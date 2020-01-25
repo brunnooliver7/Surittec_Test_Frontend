@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import NavBar from "./Components/NavBar"
 import List from "./Components/Pages/List"
 import Edit from "./Components/Pages/Edit"
-import Create from "./Components/Pages/Create2"
+import Create from "./Components/Pages/Create"
 
 class App extends Component {
   render() {
