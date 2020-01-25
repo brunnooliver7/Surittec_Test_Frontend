@@ -9,7 +9,7 @@ const EmailInputs = (props) => {
                 <input
                     type="text"
                     data-id={idx}
-                    value={props.emailsArray[idx].email} 
+                    defaultValue={props.emailsArray[idx].email} 
                     className="email"
                 />
             </div>

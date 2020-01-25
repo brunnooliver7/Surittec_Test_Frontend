@@ -66,9 +66,9 @@ export default class Create extends Component {
     }
     handleChangeEndereco = (e) => {
         if ( ["cep","logradouro","bairro","cidade","uf","complemento"].includes(e.target.className) ) {
-          let enderecosChange = [...this.state.cliente_endereco]
-          enderecosChange[e.target.dataset.id][e.target.className] = e.target.value
-          this.setState({ enderecosChange }, () => console.log(this.state.cliente_endereco))
+          let cliente_endereco = [...this.state.cliente_endereco]
+          cliente_endereco[e.target.dataset.id][e.target.className] = e.target.value
+          this.setState({ cliente_endereco }, () => console.log(this.state.cliente_endereco))
         }
     }
     // FUNÇÕES TELEFONE
@@ -80,9 +80,9 @@ export default class Create extends Component {
     }
     handleChangeTelefone = (e) => {
         if ( ["numero"].includes(e.target.className) ) {
-          let telefonesChange = [...this.state.cliente_telefone]
-          telefonesChange[e.target.dataset.id][e.target.className] = e.target.value
-          this.setState({ telefonesChange }, () => console.log(this.state.cliente_telefone))
+          let cliente_telefone = [...this.state.cliente_telefone]
+          cliente_telefone[e.target.dataset.id][e.target.className] = e.target.value
+          this.setState({ cliente_telefone }, () => console.log(this.state.cliente_telefone))
         }
     }
     // FUNÇÕES EMAIL
@@ -94,9 +94,9 @@ export default class Create extends Component {
     }
     handleChangeEmail = (e) => {
         if ( ["email"].includes(e.target.className) ) {
-          let emailsChange = [...this.state.cliente_email]
-          emailsChange[e.target.dataset.id][e.target.className] = e.target.value
-          this.setState({ emailsChange }, () => console.log(this.state.emailsChange))
+          let cliente_email = [...this.state.cliente_email]
+          cliente_email[e.target.dataset.id][e.target.className] = e.target.value
+          this.setState({ cliente_email }, () => console.log(this.state.cliente_email))
         } 
     }
     // SUBMIT
@@ -152,6 +152,8 @@ export default class Create extends Component {
                         value={cliente_nome} 
                         className="nome"
                         onChange={this.handleChangeNome}
+                        min="1"
+                        max="3"
                     />
                     <br/>
                     <label>CPF</label>

@@ -12,7 +12,7 @@ const EnderecoInputs = (props) => {
                     <input
                         type="text"
                         data-id={idx}
-                        value={props.enderecosArray[idx].cep} 
+                        defaultValue={props.enderecosArray[idx].cep} 
                         className="cep"
                         />
                 </div>
@@ -22,7 +22,7 @@ const EnderecoInputs = (props) => {
                     <input
                         type="text"
                         data-id={idx}
-                        value={props.enderecosArray[idx].logradouro} 
+                        defaultValue={props.enderecosArray[idx].logradouro} 
                         className="logradouro"
                     />
                 </div>
@@ -32,7 +32,7 @@ const EnderecoInputs = (props) => {
                     <input
                         type="text"
                         data-id={idx}
-                        value={props.enderecosArray[idx].bairro} 
+                        defaultValue={props.enderecosArray[idx].bairro} 
                         className="bairro"
                     />
                 </div>
@@ -42,7 +42,7 @@ const EnderecoInputs = (props) => {
                     <input
                         type="text"
                         data-id={idx}
-                        value={props.enderecosArray[idx].cidade} 
+                        defaultValue={props.enderecosArray[idx].cidade} 
                         className="cidade"
                         />
                 </div>
@@ -52,7 +52,7 @@ const EnderecoInputs = (props) => {
                     <input
                         type="text"
                         data-id={idx}
-                        value={props.enderecosArray[idx].uf} 
+                        defaultValue={props.enderecosArray[idx].uf} 
                         className="uf"
                         />
                 </div>
@@ -62,7 +62,7 @@ const EnderecoInputs = (props) => {
                     <input
                         type="text"
                         data-id={idx}
-                        value={props.enderecosArray[idx].complemento} 
+                        defaultValue={props.enderecosArray[idx].complemento} 
                         className="complemento"
                         />
                 </div>
