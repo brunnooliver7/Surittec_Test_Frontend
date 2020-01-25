@@ -5,7 +5,7 @@ import TelefoneInputs from '../Forms/TelefoneInputs'
 import EmailInputs from '../Forms/EmailInputs'
 import EnderecoInputs from '../Forms/EnderecoInputs'
 
-class Create extends Component {
+export default class Create extends Component {
     
     constructor (props) {
 
@@ -203,5 +203,3 @@ class Create extends Component {
         )
     }
 }
-
-export default Create

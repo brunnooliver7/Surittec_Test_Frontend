@@ -9,7 +9,7 @@ import List from "./Components/Pages/List"
 import Edit from "./Components/Pages/Edit"
 import Create from "./Components/Pages/Create"
 
-class App extends Component {
+export default class App extends Component {
   render() {
     return (
       <Router>
@@ -23,5 +23,3 @@ class App extends Component {
     )
   }
 }
-
-export default App;
