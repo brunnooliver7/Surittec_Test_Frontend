@@ -1,0 +1,96 @@
+.title {
+  text-align: center;
+  display: grid;
+  margin-top: 10px;
+  border-radius: 10px;
+  background-color: darkgrey;
+}
+
+.nav-link {
+  margin-left: 20px;
+}
+
+.card {
+  display: grid;
+  /* font-size: 14px; */
+  border: 1px solid #e3e3e3;
+  border-radius: 9px;
+  margin-bottom: 20px;
+  background-color:rgba(255, 255, 255, 0.50);
+  padding: 20px;
+  box-shadow: 0 2px 4px 0rgba(0,0,0,.08);
+  width: auto;
+  max-width: 600px;
+}
+
+.container-1 {
+
+  /* PROVISÓRIO */
+  border: solid 1spx blue;
+  
+  display: grid;
+  width: 250px;
+}
+
+.card-img {
+  /* align-items: center; */
+  display: grid;
+  width: auto;
+  padding: 10px;
+  border-radius: 50% ;
+}
+
+.container-2 {
+
+  /* PROVISÓRIO */
+  /* border: solid 1px green; */
+  
+  text-align: center;
+  background-color: lawngreen;
+}
+
+.cliente-endereco-itens {
+  display: grid;
+  /* border: solid 1px red; */
+  padding: 5px;
+  margin: 5px;
+}
+
+hr {
+  background-color: orange;
+  width: auto;
+  /* margin: 10px 0px 0px 0px; */
+}
+
+.container-3 {
+
+  /* PROVISÓRIO */
+  /* border: solid 1px green; */
+  background-color: lawngreen;
+
+  text-align: left;
+  grid-template-columns: 1fr 1fr;
+}
+
+.enderecos-title {
+  text-align: center;
+}
+
+.container-4 {
+
+  /* PROVISÓRIO */
+  /* border: solid 1px green; */
+  background-color: lawngreen;
+
+  text-align: center;
+}
+
+.container-5 {
+ 
+ /* PROVISÓRIO */
+ /* border: solid 1px green; */
+ background-color: lawngreen;
+
+ text-align: center;
+}
+
