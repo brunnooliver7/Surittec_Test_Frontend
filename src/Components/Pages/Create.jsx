@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import axios from 'axios'
 
-import DForm from '../Forms/DForm'
 import TelefoneInputs from '../Forms/TelefoneInputs'
 import EmailInputs from '../Forms/EmailInputs'
 import EnderecoInputs from '../Forms/EnderecoInputs'
@@ -142,18 +141,21 @@ class Create extends Component {
     render() {
         let {cliente_nome, cliente_cpf, cliente_endereco, cliente_telefone, cliente_email} = this.state
         return (
-            <React.Fragment>
+            <div className="create-forms">
                 <form 
                     className="nome-cpf-form"
                 >
                     <label>Nome</label>
+                    <br />
                     <input
                         type="text"
                         value={cliente_nome} 
                         className="nome"
                         onChange={this.handleChangeNome}
-                        />
+                    />
+                    <br/>
                     <label>CPF</label>
+                    <br/>
                     <input
                         type="text"
                         value={cliente_cpf} 
@@ -167,8 +169,8 @@ class Create extends Component {
                     onChange={this.handleChangeEndereco}
                 >
                     <div className="form-group">
-                    <button onClick={this.addEndereco}>Adicionar outro endereco</button>
                     <EnderecoInputs enderecosArray={cliente_endereco} />                
+                    <button onClick={this.addEndereco} className="btn-add-endereco">Adicionar outro endereco</button>
 
                     </div>
                 </form>
@@ -177,27 +179,27 @@ class Create extends Component {
                     onSubmit={this.handleSubmit} 
                     onChange={this.handleChangeTelefone}
                 >
-                    <button onClick={this.addTelefone}>Adicionar outro telefone</button>
                     <TelefoneInputs telefonesArray={cliente_telefone} />                
+                    <button onClick={this.addTelefone}>Adicionar outro telefone</button>
                 </form>
                 <form
                     className="email-form"
                     onSubmit={this.handleSubmit}
                     onChange={this.handleChangeEmail}
                 >
-                    <button onClick={this.addEmail}>Adicionar outro email</button>
                     <EmailInputs emailsArray={cliente_email} />
+                    <button onClick={this.addEmail}>Adicionar outro email</button>
                 </form>
                 <form
                     onSubmit={this.onSubmitCliente}
                 >
                     <input 
                         type="submit" 
-                        value="Create Todo" 
+                        value="Criar Cliente" 
                         className="btn btn-primary" 
                     />
                 </form>
-            </React.Fragment>
+            </div>
         )
     }
 }

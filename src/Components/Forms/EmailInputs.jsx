@@ -3,7 +3,6 @@ import React from 'react'
 const EmailInputs = (props) => {
     return (
         props.emailsArray.map((val, idx)=> {
-            let emailId = `email-${idx}`
             return (
             <div key={idx}>
                 <label>{`Email #${idx + 1}`}</label>

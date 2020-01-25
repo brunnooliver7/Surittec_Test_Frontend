@@ -1,11 +1,11 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 
 const Card = props => {
 
     const renderCard = () => {
         
         const list = props.list || []
-        console.log(list)
         
         return list.map(cliente => (
             
@@ -13,25 +13,29 @@ const Card = props => {
                 <div className="container-1">
                     <img src={clienteImg()} className="card-img" alt="img"/>
                 </div>
-                <br className="divisor"/>
+                {/* <hr className="divisor"/> */}
                 <div className="container-2">
                     <h1 className="cliente-name">{cliente.nome}</h1>
                     <div className="cliente-cpf">{cliente.cpf}</div>
                 </div>
-                <br className="divisor"/>
+                <hr className="divisor"/>
                 <div className="container-3">
                     <h2 className="enderecos-title">Endereços <hr /></h2>
                     <div className="cliente-endereco">{renderEnderecos(cliente.endereco)}</div>
                 </div>
-                <br className="divisor"/>
+                <hr className="divisor"/>
                 <div className="container-4">
                     <h2>Telefones<hr /></h2>
                     <div className="cliente-telefone">{renderTelefones(cliente.telefone)}</div>
                 </div>
-                <br className="divisor"/>
+                <hr className="divisor"/>
                 <div className="container-5">
                     <h2>Emails<hr /></h2>
                     <div className="cliente-email">{renderEmails(cliente.email)}</div>
+                </div>
+                <hr className="divisor"/>
+                <div className="container-6">
+                    <Link to={"/edit/"+cliente.codigo}>Editar</Link>
                 </div>
             </div>
         ))
