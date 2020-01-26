@@ -14,10 +14,10 @@ export default class List extends Component {
     render() {
         return (
             <div style={{marginTop: 20}}>
-                <input 
+                {/* <input 
                     className='form-control'
                     placeholder='Procure por um cliente'
-                />
+                /> */}
                 <div>
                     <Card />
                 </div>

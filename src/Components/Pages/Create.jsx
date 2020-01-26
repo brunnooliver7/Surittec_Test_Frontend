@@ -50,13 +50,13 @@ export default class Create extends Component {
         this.setState({
             cliente_nome: e.target.value
         })
-    }    
+    }
     // FUNÇÕES CPF
     handleChangeCPF = (e) => {
         this.setState({
             cliente_cpf: e.target.value
         })
-    }    
+    }
     // FUNÇÕES ENDEREÇO
     addEndereco = (e) => {
         this.setState((prevState) => ({
@@ -124,7 +124,7 @@ export default class Create extends Component {
         
         console.log(newClient)
 
-        axios.post('http://localhost:8080/clientes',newClient) 
+        axios.post('http://localhost:8080/clientes', newClient) 
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
 
