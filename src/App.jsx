@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import { BrowserRouter as Router, Route } from "react-router-dom"
 
 import './App.css'
-import "bootstrap/dist/css/bootstrap.min.css"
+import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
+import 'font-awesome/css/font-awesome.min.css'
 
 import NavBar from "./Components/NavBar"
 import List from "./Components/Pages/List"

@@ -18,9 +18,9 @@ export default class List extends Component {
                     className='form-control'
                     placeholder='Procure por um cliente'
                 /> */}
-                <div>
+                {/* <div> */}
                     <Card />
-                </div>
+                {/* </div> */}
             </div>
         )
     }

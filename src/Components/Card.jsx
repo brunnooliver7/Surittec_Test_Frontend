@@ -37,17 +37,17 @@ export default class Card extends Component {
             <div>
                 {
                     this.state.clientesList.map(cliente => (    
-                        <div key={cliente.codigo} className="card">
+                        <div key={cliente.codigo} className="card-cliente">
                             <div className="container-1">
-                                <img src={clienteImg()} className="card-img" alt="img"/>
+                                <img src={clienteImg()} className="card-img-cliente" alt="img"/>
                             </div>
                             <div className="container-2">
-                                <h1 className="cliente-name">{cliente.nome}</h1>
+                                <h1 className="cliente-nome">{cliente.nome}</h1>
                                 <div className="cliente-cpf">{cliente.cpf}</div>
                             </div>
                             <hr className="divisor"/>
                             <div className="container-3">
-                                <h2 className="enderecos-title">Endereços <hr /></h2>
+                                <h2 className="enderecos-title">Endereços</h2>
                                 <div className="cliente-endereco">{renderEnderecos(cliente.endereco)}</div>
                             </div>
                             <hr className="divisor"/>
@@ -62,8 +62,8 @@ export default class Card extends Component {
                             </div>
                             <hr className="divisor"/>
                             <div className="container-6">
-                                <Link to={"/edit/"+cliente.codigo}>Editar</Link>
-                                <button onClick={()=>this.deleteCliente(cliente.codigo)}>Delete</button>
+                                <Link className="btn btn-warning btn-editar" to={"/edit/"+cliente.codigo}>Editar</Link>
+                                <button className="btn btn-danger btn-deletar" onClick={()=>this.deleteCliente(cliente.codigo)}>Deletar</button>
                             </div>
                         </div>
                     )) 

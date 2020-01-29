@@ -1,6 +1,5 @@
 .title {
   text-align: center;
-  display: grid;
   margin-top: 10px;
   border-radius: 10px;
   background-color: darkgrey;
@@ -14,66 +13,64 @@
   margin-top: 10px;
 }
 
-.card {
-  display: grid;
-  /* font-size: 14px; */
+/* ----------------------- List Page ----------------------- */
+
+.card-cliente {  
   border: 1px solid #e3e3e3;
-  border-radius: 9px;
+  border-radius: 20px;
+  
   margin-bottom: 20px;
-  background-color:rgba(255, 255, 255, 0.50);
   padding: 20px;
-  box-shadow: 0 2px 4px 0rgba(0,0,0,.08);
+  
+  background-color:rgba(255, 255, 255, 0.50);
+  box-shadow: 0 2px 4px 0px rgba(0,0,0,.08);
+  
   width: auto;
   max-width: 600px;
 }
 
 .container-1 {
-
-  /* PROVISÓRIO */
-  border: solid 1spx blue;
-  
-  display: grid;
-  width: 250px;
+  display: flex;
+  text-align: center;
+  width: auto;
 }
 
-.card-img {
-  /* align-items: center; */
-  display: grid;
-  width: auto;
-  padding: 10px;
-  border-radius: 50% ;
+.card-img-cliente {
+  margin: auto;
+  border-radius: 50%;
+}
+
+.card-img-cliente:hover {
+  opacity: 90%;
+}
+
+.cliente-nome {
+  margin-top: 10px;
 }
 
 .container-2 {
-
-  /* PROVISÓRIO */
-  /* border: solid 1px green; */
-  /* background-color: lawngreen; */
-  
   text-align: center;
+  align-items: left;
+}
+
+.cliente-endereco {
+  position: relative;
+  text-align: left;
 }
 
 .cliente-endereco-itens {
-  display: grid;
-  /* border: solid 1px red; */
   padding: 5px;
   margin: 5px;
 }
 
-hr {
+.divisor {
   background-color: orange;
   width: auto;
-  /* margin: 10px 0px 0px 0px; */
+  height: 1px;
 }
 
 .container-3 {
-
-  /* PROVISÓRIO */
-  /* border: solid 1px green; */
-  /* background-color: lawngreen; */
-
   text-align: left;
-  grid-template-columns: 1fr 1fr;
 }
 
 .enderecos-title {
@@ -81,108 +78,102 @@ hr {
 }
 
 .container-4 {
-
-  /* PROVISÓRIO */
-  /* border: solid 1px green; */
-  /* background-color: lawngreen; */
-
   text-align: center;
 }
 
 .container-5 {
- 
- /* PROVISÓRIO */
- /* border: solid 1px green; */
- /* background-color: lawngreen; */
-
  text-align: center;
 }
 
 .container-6 {
- 
-  /* PROVISÓRIO */
-  /* border: solid 1px green; */
-  /* background-color: lawngreen; */
- 
   text-align: center;
 } 
 
-.create-forms {
-    
-  /* PROVISÓRIO */
-  /* background-color: lawngreen; */
-  /* display: grid; */
-  /* border: solid 2px blue; */
-
-  display: flexbox;
-  flex-direction: column;
-  /* align-items: center; */
-  width: auto;
-  height: auto;
+.btn-editar {
+  margin-right: 10px;
 }
 
-.nome-cpf-form {
+.btn-deletar {
+  margin-left: 10px;
+  margin-top: 0px;
+}
 
-  /* PROVISÓRIO */
-  /* background-color: lawngreen; */
-  /* display: grid; */
-  /* border: solid 2px green; */
+/* ----------------------- Create Page ----------------------- */
 
-  display: flexbox;
+.create-page-body{
+  display: flex;
   flex-direction: column;
   /* align-items: center; */
-  /* height: 100px; */
-  /* padding: 20px; */
-  /* height: auto; */
+}
+
+.create-forms, .edit-forms {
+  width: auto;
+  max-width: 600px;
+  height: auto;
+  background-color: #e9ecef;
+  margin: 10px 0px 10px 0px;
+  padding: 20px;
+  border-radius: 20px;
+}
+
+.fa {
+  margin: 5px;
+}
+
+.validar {
+  font-size: 12px;
+  color: red;
+  margin-top: 5px;
 }
 
 .endereco-form {
-
-  /* PROVISÓRIO */
-  /* display: grid; */
-  /* background-color: green; */
-  /* border: solid 2px green; */
-
-  margin-top: 30px;
-
-  display: flex;
-  /* padding: 10px; */
   height: auto;
   width: auto;
 }
 
-.telefone-form {
-  /* PROVISÓRIO */
-  /* display: grid; */
-  /* background-color: green; */
-  /* border: solid 2px green; */
+.endereco-title {
+  margin-top: 20px;
+}
 
+.endereco-enum {
+  font-size: 22px;
+  margin-top: 20px;
+}
+
+.telefone-form {
   height: auto;
+}
+
+.tipo {
+  margin-bottom: 10px;
 }
 
 .email-form {
-  /* PROVISÓRIO */
-  /* display: grid; */
-  /* background-color: green; */
-  /* border: solid 2px green; */
-
   height: auto;
-
 }
 
-.btn-add-endereco {
-  /* padding: 10px; */
-  /* margin-top: 10px; */
+.criar-btn-form, .edit-btn-form {
+  display: flex;
+  justify-content: center;
+  max-width: 600px;
 }
 
-.form-item {
-  /* PROVISÓRIO */
-  /* background-color: red; */
-
-  /* padding: 10px; */
-
+label {
+  margin: 10px 0px 10px 0px;
+  /* margin */
 }
 
-.form-label {
-  padding: 10px;
+.btn {
+  margin-top: 20px;
+}
+
+.btn-primary {
+  margin-top: 0px;
+  margin-bottom: 20px;
+}
+
+/* ----------------------- Edit Page ----------------------- */
+
+.edit-title {
+  margin: 20px 0px 20px 0px;
 }
