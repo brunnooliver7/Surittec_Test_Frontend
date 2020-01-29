@@ -172,6 +172,10 @@ label {
   margin-bottom: 20px;
 }
 
+.alert {
+  max-width: 600px;
+}
+
 /* ----------------------- Edit Page ----------------------- */
 
 .edit-title {

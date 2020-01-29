@@ -417,14 +417,6 @@ export default class Create extends Component {
         .then(res => console.log(res.data))
         .catch(err => console.log(err));
 
-        this.setState({
-            client_nome: '',
-            client_cpf: '',
-            client_telefone: '',
-            client_endereco: '',
-            client_email: ''
-        })
-
     }
     handleChangeNome = (e) => {
         this.setState({cliente_nome: e.target.value})
