@@ -1,3 +1,8 @@
+@import url('https://fonts.googleapis.com/css?family=Noto+Sans|Pacifico&display=swap');
+
+* {
+  font-family: 'Noto Sans', sans-serif;
+}
 .title {
   text-align: center;
   margin-top: 10px;
@@ -11,6 +16,7 @@
 
 .navbar {
   margin-top: 10px;
+  max-width: 600px;
 }
 
 /* ----------------------- List Page ----------------------- */
@@ -25,14 +31,39 @@
   background-color:rgba(255, 255, 255, 0.50);
   box-shadow: 0 2px 4px 0px rgba(0,0,0,.08);
   
-  width: auto;
   max-width: 600px;
+}
+
+.title-1 {
+  font-size: 28px;
+}
+
+.title-2 {
+  font-size: 20px;
+}
+
+.underline-title-2 {
+  margin: 5px 0px 5px 0px;
+  padding: 0px;
+  border: 1px solid orange;
+  color: orange;
+}
+
+.text {
+  margin: 15px 0px 0px 0px;
 }
 
 .container-1 {
   display: flex;
-  text-align: center;
-  width: auto;
+}
+
+.container-1-left {
+  justify-content: center;
+  align-content: center;
+}
+
+.container-1-right {
+  margin-left: 30px;
 }
 
 .card-img-cliente {
@@ -44,8 +75,8 @@
   opacity: 90%;
 }
 
-.cliente-nome {
-  margin-top: 10px;
+.cliente-nome, .cliente-cpf {
+  margin: 10px 0px 10px 0px;
 }
 
 .container-2 {
@@ -54,7 +85,6 @@
 }
 
 .cliente-endereco {
-  position: relative;
   text-align: left;
 }
 
@@ -63,22 +93,16 @@
   margin: 5px;
 }
 
-.divisor {
-  background-color: orange;
-  width: auto;
-  height: 1px;
-}
-
 .container-3 {
   text-align: left;
 }
 
-.enderecos-title {
+.enderecos-title, .telefones-title, .emails-title {
   text-align: center;
 }
 
 .container-4 {
-  text-align: center;
+  text-align: left;
 }
 
 .container-5 {
@@ -103,10 +127,9 @@
 .create-page-body{
   display: flex;
   flex-direction: column;
-  /* align-items: center; */
 }
 
-.create-forms, .edit-forms {
+.create-forms, .edit-forms, .login-form {
   width: auto;
   max-width: 600px;
   height: auto;
@@ -131,10 +154,6 @@
   width: auto;
 }
 
-.endereco-title {
-  margin-top: 20px;
-}
-
 .endereco-enum {
   font-size: 22px;
   margin-top: 20px;
@@ -142,6 +161,10 @@
 
 .telefone-form {
   height: auto;
+}
+
+.cliente-telefone-itens {
+  margin: 15px 0px 15px 0px;
 }
 
 .tipo {
@@ -160,7 +183,6 @@
 
 label {
   margin: 10px 0px 10px 0px;
-  /* margin */
 }
 
 .btn {
@@ -168,7 +190,6 @@ label {
 }
 
 .btn-primary {
-  margin-top: 0px;
   margin-bottom: 20px;
 }
 

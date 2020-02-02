@@ -6,9 +6,10 @@ import "../node_modules/bootstrap/dist/css/bootstrap.min.css"
 import 'font-awesome/css/font-awesome.min.css'
 
 import NavBar from "./Components/NavBar"
-import List from "./Components/Pages/List"
-import Edit from "./Components/Pages/Edit"
-import Create from "./Components/Pages/Create"
+import List from "./Pages/List"
+import Edit from "./Pages/Edit"
+import Create from "./Pages/Create"
+import LoginPage from "./Pages/Login"
 
 export default class App extends Component {
   render() {
@@ -16,9 +17,10 @@ export default class App extends Component {
       <Router>
         <div className="container">
           <NavBar />
-          <Route path="/" exact component={List} />
-          <Route path="/edit/:id" component={Edit} />
-          <Route path="/create" component={Create} />
+          <Route exact path='/login' component={LoginPage} />
+          <Route exact path="/list" component={List} />
+          <Route exact path="/edit/:id" component={Edit} />
+          <Route exact path="/create" component={Create} />
         </div>
       </Router>
     )

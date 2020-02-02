@@ -46,37 +46,62 @@ export default class Create extends Component {
             }
         }
 
-        // Bind Nome
-        this.handleChangeNome = this.handleChangeNome.bind(this)
-        this.validarNomeOnChange = this.validarNomeOnChange.bind(this)
-        this.validarNomeOnSubmit = this.validarNomeOnSubmit.bind(this)
-        // Bind CPF
-        this.handleChangeCPF = this.handleChangeCPF.bind(this)
-        this.validarNomeOnChange = this.validarNomeOnChange.bind(this)
-        this.validarNomeOnSubmit = this.validarNomeOnSubmit.bind(this)
-        // Bind Telefone
-        this.handleChangeTelefone = this.handleChangeTelefone.bind(this)
-        this.addTelefone = this.addTelefone.bind(this)
-        this.addTelefone = this.addTelefone.bind(this)
-        this.validarTelefoneOnChange = this.validarTelefoneOnChange.bind(this)
-        this.validarTelefoneOnSubmit = this.validarTelefoneOnSubmit.bind(this)
-        // Bind Email
-        this.handleChangeEmail = this.handleChangeEmail.bind(this)
-        this.addEmail = this.addEmail.bind(this)
-        this.addEmail = this.addEmail.bind(this)
-        this.validarEmailOnChange = this.validarEmailOnChange.bind(this)
-        this.validarEmailOnSubmit = this.validarEmailOnSubmit.bind(this)
-        // Bind Endereco
-        this.handleChangeEndereco = this.handleChangeEndereco.bind(this)
-        this.addEndereco = this.addEndereco.bind(this)
-        this.validarEnderecoOnChange = this.validarEnderecoOnChange.bind(this)
-        this.validarEnderecoOnSubmit = this.validarEnderecoOnSubmit.bind(this)
+        // Render
+        this.renderEndereco = this.renderEndereco.bind(this)
+        this.renderTelefone = this.renderTelefone.bind(this)
+        this.renderEmail = this.renderEmail.bind(this)
         // Submit
         this.handleSubmit = this.handleSubmit.bind(this)
         this.onSubmitCliente = this.onSubmitCliente.bind(this)
         this.enviarRequest = this.enviarRequest.bind(this)
+        // handleChange
+        this.handleChangeNome = this.handleChangeNome.bind(this)
+        this.handleChangeCPF = this.handleChangeCPF.bind(this)
+        this.handleChangeEndereco = this.handleChangeEndereco.bind(this)
+        this.handleChangeTelefone = this.handleChangeTelefone.bind(this)
+        this.handlChangeSelectTelefone = this.handlChangeSelectTelefone.bind(this)
+        this.handleChangeEmail = this.handleChangeEmail.bind(this)
+        // Add
+        this.addEndereco = this.addEndereco.bind(this)
+        this.addTelefone = this.addTelefone.bind(this)
+        this.addEmail = this.addEmail.bind(this)
+        // Remove
+        this.removerEndereco = this.removerEndereco.bind(this)
+        this.removerTelefone = this.removerTelefone.bind(this)
+        this.removerEmail = this.removerEmail.bind(this)
+        // Validate onChange
+        this.validarNomeOnChange = this.validarNomeOnChange.bind(this)
+        this.validarCpfOnChange = this.validarCpfOnChange.bind(this)
+        this.validarTelefoneOnChange = this.validarTelefoneOnChange.bind(this)
+        this.validarEmailOnChange = this.validarEmailOnChange.bind(this)
+        this.validarEnderecoOnChange = this.validarEnderecoOnChange.bind(this)
+        // Validar onSubmit
+        this.validarNomeOnSubmit = this.validarNomeOnSubmit.bind(this)
+        this.validarCpfOnSubmit = this.validarCpfOnSubmit.bind(this)
+        this.validarEnderecoOnSubmit = this.validarEnderecoOnSubmit.bind(this)
+        this.validarTelefoneOnSubmit = this.validarTelefoneOnSubmit.bind(this)
+        this.validarEmailOnSubmit = this.validarEmailOnSubmit.bind(this)
+        // Alerts
+        this.AlertSuccess = this.AlertSuccess.bind(this)
+        this.AlertNome = this.AlertNome.bind(this)
+        this.AlertCpf = this.AlertCpf.bind(this)
+        this.AlertEndereco = this.AlertEndereco.bind(this)
+        this.AlertTelefone = this.AlertTelefone.bind(this)
+        this.AlertEmail = this.AlertEmail.bind(this)
+        // Others
+        this.buscarCEP = this.buscarCEP.bind(this)
+        this.maskTelefone = this.maskTelefone.bind(this)
     }
+    componentDidMount() {
+        var userAuthenticated = localStorage.getItem('userAuthenticated')
+        var adminAuthenticated = localStorage.getItem('adminAuthenticated')
 
+        if(userAuthenticated === 'false') {
+            window.location.replace("http://localhost:3000/login");
+        } else if(adminAuthenticated === 'false') {
+            window.location.replace("http://localhost:3000/list");
+        }
+    }
     render() {
         let {cliente_nome, cliente_cpf} = this.state
         return (
@@ -169,7 +194,6 @@ export default class Create extends Component {
             </div>
         )
     }
-
     renderEndereco = () => {
         let cliente_endereco = this.state.cliente_endereco
         return cliente_endereco.map((val, idx)=> {
@@ -392,16 +416,7 @@ export default class Create extends Component {
             this.setState({alert_msg: {Success: 'sucesso'}})
         }
     }
-    enviarRequest = () => {
-        
-        console.log(this.state)
-        
-        console.log(`Form submited`)
-        console.log(`Nome: ${this.state.cliente_nome}`)
-        console.log(`CPF: ${this.state.cliente_cpf}`)
-        console.log(`Endereco: ${this.state.cliente_endereco}`)
-        console.log(`Telefone: ${this.state.cliente_telefone}`)
-        console.log(`Email: ${this.state.cliente_email}`)
+    enviarRequest = () => {        
 
         const newClient = {
             nome: this.state.cliente_nome,
@@ -411,11 +426,20 @@ export default class Create extends Component {
             email: this.state.cliente_email
         }
         
-        console.log(newClient)
+        var user = localStorage.getItem('user')
+        var password = localStorage.getItem('password')
 
-        axios.post('http://localhost:8080/clientes', newClient) 
+        axios({
+            method:'post',
+            url: 'http://localhost:8080/post',
+            auth: {
+                username: user,
+                password: password
+            },
+            data: newClient
+        })
         .then(res => console.log(res.data))
-        .catch(err => console.log(err));
+        .catch(err => console.log(err))
 
     }
     handleChangeNome = (e) => {
@@ -570,7 +594,6 @@ export default class Create extends Component {
 
         let nome = e.target.value
 
-        // Erro1
         if(nome.length === 0) { 
             this.setState({nomeErro1: 'Este campo é obrigatório'})
         } else if((nome.length>=1 && nome.length<3) || nome.length>100) {
@@ -579,8 +602,7 @@ export default class Create extends Component {
             this.setState({nomeErro1: ''})
         }
 
-        // Erro2
-        var filtro = /^[A-Za-z0-9\s]*$/g
+        var filtro = /^[A-Za-z0-9áéíóúãõâêôçÁÉÍÓÚÃÕÂÊÔÇ\s]*$/g
         if (!filtro.test(nome)) {
             this.setState({nomeErro2: 'Você só pode inserir letras e números'})
         } else {
@@ -616,7 +638,6 @@ export default class Create extends Component {
     }
     validarTelefoneOnChange = (e) => {
 
-        // retirar a máscara
         let telefoneValue = e.target.value
         telefoneValue = telefoneValue.replace(/[()\s-]/g, '')
         
@@ -743,21 +764,6 @@ export default class Create extends Component {
         return result
 
     }
-    maskTelefone = (idx) => {
-
-        let i = idx.idx
-        let selectType = this.state.cliente_telefone[i].tipo
-        let mask
-
-        if(selectType === 'Residencial') {
-            mask = ['(', /\d/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
-        } else if(selectType === 'Comercial') {
-            mask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
-        } else if(selectType === 'Celular') {
-            mask = ['(', /\d/, /\d/,')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
-        }        
-        return mask
-    }
     AlertSuccess = () => {
         return (
             <div className="alert alert-success" role="alert">
@@ -829,6 +835,21 @@ export default class Create extends Component {
 
         }).catch()
 
+    }
+    maskTelefone = (idx) => {
+
+        let i = idx.idx
+        let selectType = this.state.cliente_telefone[i].tipo
+        let mask
+
+        if(selectType === 'Residencial') {
+            mask = ['(', /\d/, /\d/,')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+        } else if(selectType === 'Comercial') {
+            mask = ['(', /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+        } else if(selectType === 'Celular') {
+            mask = ['(', /\d/, /\d/,')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/]
+        }        
+        return mask
     }
 
 }

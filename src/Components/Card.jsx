@@ -13,20 +13,46 @@ export default class Card extends Component {
     }
 
     componentDidMount() {
-        axios.get('http://localhost:8080/clientes')
+
+        var user = localStorage.getItem('user')
+        var password = localStorage.getItem('password')
+
+        axios({
+            method:'get',
+            url: 'http://localhost:8080/list',
+            auth: {
+                username: user,
+                password: password
+            }
+        })
         .then(response => {
             this.setState({clientesList: response.data})
         })
         .catch(function(error) {
             console.log(error)
         })
+
     }
 
     deleteCliente(codigo) {
-        if(window.confirm('Tem certeza que deseja deletar este cliente?')) {
-            fetch('http://localhost:8080/clientes/'+codigo, {
-                method: 'DELETE',
-                header: {'Accept':'application/json','Content-Type':'application/json'}
+
+        var adminAuthenticated = localStorage.getItem('adminAuthenticated')
+
+        if(adminAuthenticated === 'false') {
+            window.alert('Você não está autorizado a deletar clientes')
+        } else if(window.confirm('Tem certeza que deseja deletar este cliente?')) {
+
+            let url = 'http://localhost:8080/delete/'+codigo
+            let user = localStorage.getItem('user')
+            let password = localStorage.getItem('password')
+           
+            axios({
+                method:'delete',
+                url: url,
+                auth: {
+                    username: user,
+                    password: password
+                }
             })
         }
         window.location.reload()
@@ -39,29 +65,40 @@ export default class Card extends Component {
                     this.state.clientesList.map(cliente => (    
                         <div key={cliente.codigo} className="card-cliente">
                             <div className="container-1">
-                                <img src={clienteImg()} className="card-img-cliente" alt="img"/>
-                            </div>
-                            <div className="container-2">
-                                <h1 className="cliente-nome">{cliente.nome}</h1>
-                                <div className="cliente-cpf">{cliente.cpf}</div>
+                                <div className="container-1-left">
+                                    <img src={clienteImg()} className="card-img-cliente" alt="img"/>
+                                </div>
+                                <div className="container-1-right">
+                                    <div className="title-1">Informações Pessoais</div>
+                                    <div className="cliente-nome">
+                                        <div className="title-2">Nome</div>
+                                        <hr className="underline-title-2"></hr>
+                                        {cliente.nome}
+                                    </div>
+                                    <div className="cliente-cpf">
+                                        <div className="title-2">CPF</div>
+                                        <hr className="underline-title-2"></hr>
+                                        {cliente.cpf}
+                                    </div>
+                                </div>
                             </div>
                             <hr className="divisor"/>
-                            <div className="container-3">
-                                <h2 className="enderecos-title">Endereços</h2>
+                            <div className="container-2">
+                                <div className="enderecos-title title-1">Endereços</div>
                                 <div className="cliente-endereco">{renderEnderecos(cliente.endereco)}</div>
                             </div>
                             <hr className="divisor"/>
-                            <div className="container-4">
-                                <h2>Telefones<hr /></h2>
+                            <div className="container-3">
+                                <div className="telefones-title title-1">Telefones</div>
                                 <div className="cliente-telefone">{renderTelefones(cliente.telefone)}</div>
                             </div>
                             <hr className="divisor"/>
-                            <div className="container-5">
-                                <h2>Emails<hr /></h2>
+                            <div className="container-4">
+                                <div className="emails-title title-1">Emails</div>
                                 <div className="cliente-email">{renderEmails(cliente.email)}</div>
                             </div>
                             <hr className="divisor"/>
-                            <div className="container-6">
+                            <div className="container-5">
                                 <Link className="btn btn-warning btn-editar" to={"/edit/"+cliente.codigo}>Editar</Link>
                                 <button className="btn btn-danger btn-deletar" onClick={()=>this.deleteCliente(cliente.codigo)}>Deletar</button>
                             </div>
@@ -83,43 +120,46 @@ const clienteImg = () => {
     link = link.concat(".jpg")
     return link
 }
-
 const renderEnderecos = (enderecos) => {
     let itens = []
     for (let i = 0; i < enderecos.length; i++) { 
         itens.push(
             <div className="cliente-endereco-itens" key={i}>
-                <h3>Endereço {i+1} <hr/></h3>
-                <p>CEP: {enderecos[i].cep}</p>
-                <p>Logradouro: {enderecos[i].logradouro}</p>
-                <p>Bairro: {enderecos[i].bairro}</p>
-                <p>Cidade: {enderecos[i].cidade}</p>
-                <p>UF: {enderecos[i].uf}</p>
-                <p>Complemento: {enderecos[i].complemento}</p>
+                <div className="title-2">Endereço {i+1}</div>
+                <hr className="underline-title-2"/>
+                <div className="text">CEP: {enderecos[i].cep}</div>
+                <div className="text">Logradouro: {enderecos[i].logradouro}</div>
+                <div className="text">Bairro: {enderecos[i].bairro}</div>
+                <div className="text">Cidade: {enderecos[i].cidade}</div>
+                <div className="text">UF: {enderecos[i].uf}</div>
+                <div className="text">Complemento: {enderecos[i].complemento}</div>
             </div>
         )
     }
     return(<div>{itens}</div>)
 }
-
 const renderTelefones = (telefones) => {
     let itens = []
     for (let i = 0; i < telefones.length; i++) { 
         itens.push(
             <div className="cliente-telefone-itens" key={i}>
-                <p>{telefones[i].numero}</p>
+                <div className="title-2">Telefone {i+1}</div>
+                <hr className="underline-title-2"/>
+                <div>{telefones[i].tipo}</div>
+                <div>{telefones[i].numero}</div>
             </div>
         )
     }
     return(<div>{itens}</div>)
 }
-
 const renderEmails = (emails) => {
     let itens = []
     for (let i = 0; i < emails.length; i++) { 
         itens.push(
             <div className="cliente-email-itens" key={i}>
-                <p>{emails[i].email}</p>
+                <div className="title-2">Email {i+1}</div>
+                <hr className="underline-title-2"/>
+                <div>{emails[i].email}</div>
             </div>
         )
     }
