@@ -53,7 +53,7 @@ export default class Login extends Component {
             localStorage.setItem('password', this.state.password)
             localStorage.setItem('userAuthenticated', true)
             localStorage.setItem('adminAuthenticated', true)
-            window.location.replace("http://localhost:3000/list");
+            window.location.replace("http://localhost:3000/clientes");
         } else if(this.state.user === 'comum' && this.state.password === '123456') {
             localStorage.setItem('user', this.state.user)
             localStorage.setItem('password', this.state.password)

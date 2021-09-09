@@ -19,7 +19,7 @@ export default class Card extends Component {
 
         axios({
             method:'get',
-            url: 'http://localhost:8080/list',
+            url: 'http://localhost:8080/clientes',
             auth: {
                 username: user,
                 password: password
@@ -42,7 +42,7 @@ export default class Card extends Component {
             window.alert('Você não está autorizado a deletar clientes')
         } else if(window.confirm('Tem certeza que deseja deletar este cliente?')) {
 
-            let url = 'http://localhost:8080/delete/'+codigo
+            let url = 'http://localhost:8080/clientes/'+codigo
             let user = localStorage.getItem('user')
             let password = localStorage.getItem('password')
            

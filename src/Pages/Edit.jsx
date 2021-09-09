@@ -112,7 +112,7 @@ export default class Edit extends Component {
             let text = window.location.href
             let textArray = text.split("/")
             let codigo = textArray[textArray.length-1]
-            let url = 'http://localhost:8080/get/' + codigo
+            let url = 'http://localhost:8080/clientes/' + codigo
 
             var user = localStorage.getItem('user')
             var password = localStorage.getItem('password')
@@ -474,7 +474,7 @@ export default class Edit extends Component {
         let text = window.location.href
         let textArray = text.split("/")
         let codigo = textArray[textArray.length-1]
-        let url = 'http://localhost:8080/put/'+codigo
+        let url = 'http://localhost:8080/clientes/'+codigo
         let user = localStorage.getItem('user')
         let password = localStorage.getItem('password')
 

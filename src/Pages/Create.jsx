@@ -431,7 +431,7 @@ export default class Create extends Component {
 
         axios({
             method:'post',
-            url: 'http://localhost:8080/post',
+            url: 'http://localhost:8080/clientes',
             auth: {
                 username: user,
                 password: password
