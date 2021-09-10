@@ -1,22 +1,14 @@
-import React, { Component } from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import axios from 'axios'
 
-export default class Card extends Component {
+const Card = props => {
 
-    constructor(props) {
-        super(props)
-        this.state = {
-            clientesList: []
-        }
-        this.deleteCliente = this.deleteCliente.bind(this)
-    }
+    const [clientesList, setState] = useState([])
 
-    componentDidMount() {
-
+    useEffect(() => {
         var user = localStorage.getItem('user')
         var password = localStorage.getItem('password')
-
         axios({
             method:'get',
             url: 'http://localhost:8080/clientes',
@@ -26,15 +18,14 @@ export default class Card extends Component {
             }
         })
         .then(response => {
-            this.setState({clientesList: response.data})
+            setState(response.data)
         })
         .catch(function(error) {
             console.log(error)
         })
-
-    }
-
-    deleteCliente(codigo) {
+    }, [])
+    
+    function deleteCliente(codigo) {
 
         var adminAuthenticated = localStorage.getItem('adminAuthenticated')
 
@@ -58,56 +49,52 @@ export default class Card extends Component {
         window.location.reload()
     }
 
-    render() {
-        return (
-            <div>
-                {
-                    this.state.clientesList.map(cliente => (    
-                        <div key={cliente.codigo} className="card-cliente">
-                            <div className="container-1">
-                                <div className="container-1-left">
-                                    <img src={clienteImg()} className="card-img-cliente" alt="img"/>
-                                </div>
-                                <div className="container-1-right">
-                                    <div className="title-1">Informações Pessoais</div>
-                                    <div className="cliente-nome">
-                                        <div className="title-2">Nome</div>
-                                        <hr className="underline-title-2"></hr>
-                                        {cliente.nome}
-                                    </div>
-                                    <div className="cliente-cpf">
-                                        <div className="title-2">CPF</div>
-                                        <hr className="underline-title-2"></hr>
-                                        {cliente.cpf}
-                                    </div>
-                                </div>
+    return (
+        <div>
+            {clientesList.map(cliente => (    
+                <div key={cliente.codigo} className="card-cliente">
+                    <div className="container-1">
+                        <div className="container-1-left">
+                            <img src={clienteImg()} className="card-img-cliente" alt="img"/>
+                        </div>
+                        <div className="container-1-right">
+                            <div className="title-1">Informações Pessoais</div>
+                            <div className="cliente-nome">
+                                <div className="title-2">Nome</div>
+                                <hr className="underline-title-2"></hr>
+                                {cliente.nome}
                             </div>
-                            <hr className="divisor"/>
-                            <div className="container-2">
-                                <div className="enderecos-title title-1">Endereços</div>
-                                <div className="cliente-endereco">{renderEnderecos(cliente.endereco)}</div>
-                            </div>
-                            <hr className="divisor"/>
-                            <div className="container-3">
-                                <div className="telefones-title title-1">Telefones</div>
-                                <div className="cliente-telefone">{renderTelefones(cliente.telefone)}</div>
-                            </div>
-                            <hr className="divisor"/>
-                            <div className="container-4">
-                                <div className="emails-title title-1">Emails</div>
-                                <div className="cliente-email">{renderEmails(cliente.email)}</div>
-                            </div>
-                            <hr className="divisor"/>
-                            <div className="container-5">
-                                <Link className="btn btn-warning btn-editar" to={"/edit/"+cliente.codigo}>Editar</Link>
-                                <button className="btn btn-danger btn-deletar" onClick={()=>this.deleteCliente(cliente.codigo)}>Deletar</button>
+                            <div className="cliente-cpf">
+                                <div className="title-2">CPF</div>
+                                <hr className="underline-title-2"></hr>
+                                {cliente.cpf}
                             </div>
                         </div>
-                    )) 
-                }
-            </div>
-        )
-    }
+                    </div>
+                    <hr className="divisor"/>
+                    <div className="container-2">
+                        <div className="enderecos-title title-1">Endereços</div>
+                        <div className="cliente-endereco">{renderEnderecos(cliente.endereco)}</div>
+                    </div>
+                    <hr className="divisor"/>
+                    <div className="container-3">
+                        <div className="telefones-title title-1">Telefones</div>
+                        <div className="cliente-telefone">{renderTelefones(cliente.telefone)}</div>
+                    </div>
+                    <hr className="divisor"/>
+                    <div className="container-4">
+                        <div className="emails-title title-1">Emails</div>
+                        <div className="cliente-email">{renderEmails(cliente.email)}</div>
+                    </div>
+                    <hr className="divisor"/>
+                    <div className="container-5">
+                        <Link className="btn btn-warning btn-editar" to={"/edit/"+cliente.codigo}>Editar</Link>
+                        <button className="btn btn-danger btn-deletar" onClick={()=>deleteCliente(cliente.codigo)}>Deletar</button>
+                    </div>
+                </div>
+            ))}
+        </div>
+    )
     
 }
     
@@ -165,3 +152,5 @@ const renderEmails = (emails) => {
     }
     return(<div>{itens}</div>)
 }
+
+export default Card
