@@ -25,13 +25,13 @@ const Card = () => {
       });
   }, []);
 
-  function deleteCliente(codigo) {
+  function deleteCliente(id) {
     const adminAuthenticated = localStorage.getItem('adminAuthenticated');
 
     if (adminAuthenticated === 'false') {
       window.alert('Você não está autorizado a deletar clientes');
     } else if (window.confirm('Tem certeza que deseja deletar este cliente?')) {
-      const url = `http://localhost:8080/clientes/${codigo}`;
+      const url = `http://localhost:8080/clientes/${id}`;
       const user = localStorage.getItem('user');
       const password = localStorage.getItem('password');
 
@@ -141,7 +141,7 @@ const Card = () => {
   return (
     <div>
       {clientesList.map((cliente) => (
-        <div key={cliente.codigo} className="card-cliente">
+        <div key={cliente.id} className="card-cliente">
           <div className="container-1">
             <div className="container-1-left">
               <img src={clienteImg()} className="card-img-cliente" alt="img" />
@@ -177,8 +177,8 @@ const Card = () => {
           </div>
           <hr className="divisor" />
           <div className="container-5">
-            <Link className="btn btn-warning btn-editar" to={`/edit/${cliente.codigo}`}>Editar</Link>
-            <button type="button" className="btn btn-danger btn-deletar" onClick={() => deleteCliente(cliente.codigo)}>Deletar</button>
+            <Link className="btn btn-warning btn-editar" to={`/edit/${cliente.id}`}>Editar</Link>
+            <button type="button" className="btn btn-danger btn-deletar" onClick={() => deleteCliente(cliente.id)}>Deletar</button>
           </div>
         </div>
       ))}
